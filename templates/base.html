@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Template">
+    <meta name="author" content="LiveInsights">
+    
+    
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'img/favicon.png') }}">
+
+    <title>{% block title %} Base {% endblock  %}</title>
+
+        <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <!-- bootstrap theme -->
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap-theme.css') }}">
+    <!--external css-->
+    <!-- font icon -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/elegant-icons-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/font-awesome.min.css') }}">
+    
+    <!-- full calendar css-->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'assets/fullcalendar/fullcalendar/fullcalendar.css') }}">
+
+    <!-- easy pie chart-->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}" type="text/css" media="screen">
+    
+    <!-- owl carousel -->
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/jquery-jvectormap-1.2.2.css') }}">
+    
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/widgets.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style-responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/xcharts.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/jquery-ui-1.10.4.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap-colorpicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/custom.css') }}">
+
+        
+        {% block head %} {% endblock %}
+    </head>
+    <body>
+        {% block nav %}
+        <!-- container section start -->
+        <section id="container" class="">
+
+
+            <header class="header dark-bg">
+                <div>
+                    <div class="toggle-nav">
+                        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+                    </div>
+
+                    <!--logo start-->
+                    <a href="#" class="logo">LaRocca<span class="lite"> Forecasting Schedule</span></a>
+                    <!--logo end-->
+                </div>
+            </header>
+            <!--header end-->
+
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar" class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu">
+
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>Pages</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                        <ul class="sub">
+                        <li><a class="" href="general.html">Summary</a></li>
+                        <li><a class="" href="/buttons">Forecast</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="" class="">
+                                    <i class="icon_profile"></i>
+                                    <span>Profile</span>
+                                    
+                        </a>
+
+                    </li>
+                    <li class="sub-menu">
+                        <a href="" class="">
+                                    <i class="icon_key_alt"></i>
+                                    <span>Logout</span>
+                                    
+                        </a>
+
+                    </li>
+
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+
+        
+
+            {% block body %} {% endblock %}
+        </section>
+        <!-- container section start -->
+        {% endblock %}
+        <!-- javascripts -->
+        
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+        <!-- nice scroll -->
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.scrollTo.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.nicescroll.js') }}"></script>
+        
+        {% block script %} {% endblock %}
+        
+        <!--custome script for all page-->
+    
+        <script type="text/javascript" src="{{ url_for('static', filename = 'assets/jquery-knob/js/jquery.knob.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/scripts.js') }}"></script>
+        
+        
+        
+    <script>
+        //knob
+        $(function() {
+        $(".knob").knob({
+            'draw': function() {
+            $(this.i).val(this.cv + '%')
+            }
+        })
+        });
+
+        //carousel
+        $(document).ready(function() {
+        $("#owl-slider").owlCarousel({
+            navigation: true,
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            singleItem: true
+
+        });
+        });
+
+        //custom select box
+
+        $(function() {
+        $('select.styled').customSelect();
+        });
+
+        /* ---------- Map ---------- */
+        $(function() {
+        $('#map').vectorMap({
+            map: 'world_mill_en',
+            series: {
+            regions: [{
+                values: gdpData,
+                scale: ['#000', '#000'],
+                normalizeFunction: 'polynomial'
+            }]
+            },
+            backgroundColor: '#eef3f7',
+            onLabelShow: function(e, el, code) {
+            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+            }
+        });
+        });
+
+        
+    </script>
+    </body>
+</html>
