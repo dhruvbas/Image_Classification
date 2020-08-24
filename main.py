@@ -57,6 +57,27 @@ def predict():
     try:
         model.eval()
         content = request.get_json()
+        clientID = content['client_id']
+        counter = 0
+        imagedic = {"client_id": clientID}
+        image_urls = content['image_urls']
+        results = []
+        while counter < len (image_urls):
+            url = image_urls[counter]
+            img = HAM10000(url, transform=train_transform)
+            pred_loader = DataLoader(img, batch_size=1, shuffle=False, num_workers=0)
+            result = prediction(model,pred_loader,device)
+            results.append(result)
+            counter = counter+1
+        imagedic["results"] = results
+        return jsonify(imagedic)
+    except Exception as e:
+        return e
+
+def predictold():
+    try:
+        model.eval()
+        content = request.get_json()
         clientID = content['ClientID']
         counter = 1
         imagedic = {"ClientID": clientID}
@@ -72,7 +93,7 @@ def predict():
     except Exception as e:
         return e
 
- 
+
 if __name__ == "__main__":
     #port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', debug=True)

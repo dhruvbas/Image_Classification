@@ -35,20 +35,20 @@ def prediction(model,pred,device):
             probs = probabilities.data.cpu().numpy()[0] 
             probdist = {}
             for j, prob in enumerate(probs):
-                add_element(probdist,imageMapping(j), float(prob))
+                add_element(probdist,imageMapping(j), f'{float(prob):.10f}')
     return probdist
 
 # Get disease type 
 
 def imageMapping(num):
     switcher={
-                0:'Actinic keratoses',
-                1:'Basal cell carcinoma',
-                2:'Benign keratosis-like lesions',
-                3:'Dermatofibroma',
-                4:'Melanocytic nevi',
-                5:'Melanoma',
-                6:'Vascular lesions'
+                0:'actinic_keratoses',
+                1:'basal_cell_carcinoma',
+                2:'benign_keratosis_like_lesions',
+                3:'dermatofibroma',
+                4:'melanocytic_nevi',
+                5:'melanoma',
+                6:'vascular_lesions'
              }
     return switcher.get(num,"Invalid")
 
@@ -56,8 +56,9 @@ def imageMapping(num):
 
 def add_element(dict, key, value):
     if key not in dict:
-        dict[key] = []
-    dict[key].append(value)
+        #dict[key] = []
+        dict[key] = value
+    #dict[key].append(value)
 
 # Define a pytorch dataloader for this dataset
 class HAM10000(Dataset):
